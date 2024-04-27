@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -18,11 +20,14 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.camp.camp.ui.theme.PinkIoasys
+
 
 
 @Composable
@@ -33,6 +38,8 @@ fun LoginScreen(onLoginClick: (String, String) -> Unit) {
     var password by remember {
         mutableStateOf("")
     }
+    var showPassword by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -63,12 +70,31 @@ fun LoginScreen(onLoginClick: (String, String) -> Unit) {
                 .fillMaxWidth()
                 .padding(end = 16.dp, start = 16.dp),
             value = password,
-            visualTransformation = PasswordVisualTransformation(),
             onValueChange = {
                 password = it
-            }, label = {
+            },
+            label = {
                 Text(text = "senha")
-            })
+            },
+            visualTransformation = if (showPassword) {
+                VisualTransformation.None
+            } else {
+                PasswordVisualTransformation()
+            },
+            trailingIcon = {
+                if (showPassword) {
+                    IconButton(onClick = { showPassword = false }) {
+                        Icon(painterResource(id = R.drawable.baseline_visibility_24), contentDescription = "Hide password")
+                    }
+                } else {
+                    IconButton(onClick = { showPassword = true }) {
+                        Icon(painterResource(id = R.drawable.baseline_visibility_off_24), contentDescription = "Show password")
+                    }
+                }
+
+            }
+        )
+
 
         Button(modifier = Modifier.padding(16.dp).fillMaxWidth(),onClick = { onLoginClick.invoke(email, password) }, colors = ButtonDefaults.buttonColors(
             contentColor = Color.White,
