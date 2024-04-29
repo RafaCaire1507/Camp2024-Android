@@ -1,3 +1,5 @@
-*Desenvolvi um aplicativo de Lista de Tarefas com uma tela de login. 
-*A funcionalidade de login foi implementada utilizando uma API.
-*No desenvolvimento, optamos por utilizar o Jetpack Compose, uma moderna ferramenta de composição de interfaces do Android, disponível através do Android Studio.
+# App Lista de tarefas
+
+* Desenvolvi um aplicativo de Lista de Tarefas com uma tela de login. 
+* A funcionalidade de login foi implementada utilizando uma API.
+* No desenvolvimento, optamos por utilizar o Jetpack Compose, uma moderna ferramenta de composição de interfaces do Android, disponível através do Android Studio.
